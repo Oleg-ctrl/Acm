@@ -1,43 +1,38 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-import static java.lang.Math.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Solution {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int size1 = scanner.nextInt();
-        int arr1[] = new int[size1];
-        for (int i = 0; i < size1; i++) {
-            arr1[i] = abs (scanner.nextInt());
+        int n = scanner.nextInt();
+        String arr1[] = new String[n];
+        if (n <= 100)
+        {
+            n = n;
         }
+        else
+        {
+            n = 100;
+        }
+        for (int i = 0; i < n; i++) {
+            arr1[i] = scanner.next();
+        }
+        ArrayList arrayList = new ArrayList();
 
-        int size2 = scanner.nextInt();
-        int arr2[] = new int[size2];
-        for (int i = 0; i < size2; i++) {
-            arr2[i] = Math.abs(scanner.nextInt());
-        }
-        ArrayList <Integer> array = new ArrayList();
+        Pattern p = Pattern.compile("[aeuioy]{3}");
 
-        for (int i = 0; i < size1; i++) {
-            for (int j = 0; j < size2; j++) {
-                if (arr1[i] == arr2[j]) {
-                    array.add(arr1[i]);
-                    break;
-                }
-            }
-        }
-        if (array.size() == 0) {
-            System.out.println(0);
-            System.out.println();
-        } else {
-            System.out.println(array.size());
-            for (int i = 0; i < array.size(); i++) {
-                System.out.print(array.get(i));
-                System.out.println("");
+        for (int i = 0; i < arr1.length; i++) {
+            Matcher m = p.matcher(arr1[i]);
+            if (m.find()) {
+                arrayList.add(arr1[i]);
             }
 
         }
-
+        for (int i = 0; i < arrayList.size(); i++) {
+            System.out.println(arrayList.get(i));
+        }
     }
 }
 
